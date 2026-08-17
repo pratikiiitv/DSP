@@ -15,7 +15,7 @@ Course Text:
 Digital Signal Processing, Proakis and Monolakis
 Structure and Interpretation of Signals and Systems by Edward A. Lee and Pravin Varaiya
 
-* Is time a phenomena?
+Is time a phenomena?
 
 Empirical World          (Homo)Morphism         Formal World
                             <->
@@ -119,7 +119,7 @@ corresponding matrix representation.
 
 Analogy: Null space of a matrix !-> Filtering in Action. 
 
-20260814
+20260817
 Lab1
 
 1. Observe 20 Hz Cosine sampled at different sampling rates.
@@ -133,7 +133,8 @@ e. 20 Hz
 f. 10 Hz
 Write your observations about the sampled versions.
 
-2. Sketch function sinc(t) = sin(t)/t for t\in (-\infty,\infty)
+2. Sketch function sinc(t) = sin(t)/t for
+   t\in (-4pi,4pi)
 
 3. Linear Combination of Sinusoids and approximation to square wave
 A square wave is defined as 
@@ -182,5 +183,5 @@ Find out the gain and delay in y(t) w.r.t. x(t).
 
 Plot the frequency vs. gain and delay graphs on log scale.
 
-9. Representing Moving Average Filter as matrix vector multiplication 
+8. Representing Moving Average Filter as matrix vector multiplication 
 for a finite sequence. 
