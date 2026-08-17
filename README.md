@@ -1,0 +1,186 @@
+EC605 DSP
+Assessment Policy
+Mid-semester Examination 30%
+End-semester Examination 45%
+Laboratory 25% 
+(1) Lab exercises + Assignments + In-lab submissions
+(2) Development Project - hardware and/or software
+(3) Research - Read, Understand, Implement, Communicate +delta to conference
+
+
+Attendance in class/ lab is mandatory
+
+Course Outline (as per the curriculum)
+Course Text:
+Digital Signal Processing, Proakis and Monolakis
+Structure and Interpretation of Signals and Systems by Edward A. Lee and Pravin Varaiya
+
+* Is time a phenomena?
+
+Empirical World          (Homo)Morphism         Formal World
+                            <->
+P(x,y,z,t)              microphone/ speaker!    f(t)                   
+                                                Integrator
+                                                Differentiator
+                                                Amplification    
+(P1 + P2)(x,y,z,t)                              (f1+f2)(t)=
+= P1(x,y,z,t) + P2(x,y,z,t)                     f1(t)+f2(t) 
+
+increase intensity                              f -> \alpha * f
+
+                                                t \in Real (<)
+                                                f(t) \in Real (+)
+
+Homomorphism : Structure preserving map 
+
+V.0 Model of Pressure recorded at a point
+A real function of real variable.
+f: Real -> Real
+Set of all functions S:={f|f:R->R}
+
+(S, +, \alpha \in R) Vector Space
+f \in S and \alpha \in R => \alpha * f \in S
+f1, f2 \in S => f1 + f2 \in S 
+
+Operate vs Transform
+D->D        D->R 
+
+System : [R->R] -> [R->R]
+h : (S,+,\alpha) -> (S,+,\alpha) 
+
+Sound! Press Record?
+Analog Sound->Microphone->Sampling->Quantization->Digital Sound
+                          
+Sampling rate and Quntization Levels / Number of Bits
+
+Q.1 Sound sampled at 40k and quantized with 256 levels. How
+many bits are required to store 1 sec of recording?
+
+Q.2 Is image a function?
+I : [0,w]X[0,h] -> {Real,Real,Real}
+I : {0,...,1023}X{0,...,1023} -> {0,...,255}^3
+
+f : D -> R
+# distinct function are |R|^|D|
+
+Q.3 Is video a function?
+V : {0,...,N}^2 X Real -> {0,...,255}^3 
+Persistence of vision -> Sampling in temporal domain
+V : {0,...,N}^2 X {1,...,100}_dt -> {0,...,255}^3 
+
+Joseph Fourier
+Heat Equation : Second order Partial Differential Equation
+Solution : Linear Combination of Sinusoids!
+
+Cauchy!
+Sequence : N -> Q 
+
+Equality is always in terms of inequality
+x = y
+|x-y| < e, for all e>0
+
+Q. What is the resolution of your computation?
+
+x = sin(2*pi*f*t), f=1000
+t = n * dt
+dt = 1/Fs, Fs = 10000;
+
+Nyquist Sampling Theorem
+Moving Average Filter 
+
+A := [R^m->R^n] 
+B := [R^n->R^k]
+C := [R^k->R^l]
+
+D = C*B*A
+D is a composite system [R^m->R^l]
+
+Linearity -> Structure Preserving Function!
+1. Superposition
+2. Homogeneity
+
+x -> f(x)
+a*x -> f(a*x) = a*f(x) 
+
+x1 -> f(x1)
+x2 -> f(x2)
+x1+x2 -> f(x1+x2) = f(x1) + f(x2)
+
+Linearity?
+x -> x+5 
+x -> log(x) 
+x -> 5*x 
+
+(x1,x2) -> (x1-x2, x1+x2)
+
+For finite dimensional vector spaces all the Linear functions
+are nothing but linear transformations and would have 
+corresponding matrix representation.
+
+Analogy: Null space of a matrix !-> Filtering in Action. 
+
+20260814
+Lab1
+
+1. Observe 20 Hz Cosine sampled at different sampling rates.
+Generate a 20 Hz Cosine signal. Sample the function
+at the following sampling frequencies :
+a. 100 Hz
+b. 50 Hz
+c. 40 Hz
+d. 30 Hz
+e. 20 Hz
+f. 10 Hz
+Write your observations about the sampled versions.
+
+2. Sketch function sinc(t) = sin(t)/t for t\in (-\infty,\infty)
+
+3. Linear Combination of Sinusoids and approximation to square wave
+A square wave is defined as 
+x(t)    = 1, t \in [2N,2N+1), N \in \mathbb{Z}  
+        = -1, t \in [2N+1, 2N+2), N \in \mathbb{Z}
+
+
+4. Spatial Sinusoids and Periodic Images
+Concept of spatial frequency (cycles per pixel)
+Create following 200x200 size grayscale image with 8 bit resolution 
+4.1 Horizontally - frequency of sinusoid is 1/200 cycles per pixel
+4.2 Vertically - frequency of sinusoid is 1/200 cycles per pixel
+4.2 Horizontal-Vertical Frequency of 1/100 cyelces per pixel and 
+1/50 cycles per pixel 
+
+
+5. Generation of various Signals
+5.1 Amplitude Modulation 
+Carrier Frequency of fc = 1000 Hz
+Signal Frequency of fs = 10 Hz 
+x(t) = A(t) sin(2*pi*fc*t)
+A(t) = sin(2*pi*fs*t) 
+5.2 Chirp signal 
+x(t) = sin(2*pi*100*t^2)
+
+6. Ensemble of Sample Functions 
+Generate noise ensamble : Noise(k, t) using randn for k=256
+where k is number of sample functions.
+Let x(k, t) = sin(2*pi*1000*t) + Noise(k,t)
+Fs = 44100, t=0:1/Fs:2
+Use this ensamble of x(k, t) to create the Average
+X = 1/m \sum_i=1:k x(i, t) for all t
+
+Is Noise a foe or a friend?
+
+7. Moving Average Filter and its Frequency response?
+For moving average filter [N->R]->[N->R]
+described by the following Difference
+Equation
+y(n) = (x(n) + x(n-1) + ... + x(n-k+1))/k
+Where x(n) is discrete version of x(t)
+
+For x(t) = sin(2*pi*f*t), dt=1/Fs, Fs = 44100, t=0:1/Fs:2
+For various frequencies f \in {10, 50, 100, 500, 1000, 5000, 10000}
+Find out the gain and delay in y(t) w.r.t. x(t).
+
+Plot the frequency vs. gain and delay graphs on log scale.
+
+9. Representing Moving Average Filter as matrix vector multiplication 
+for a finite sequence. 
